@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lina V. Dimitrov | Epidemiologist</title>
+  <style>
+    :root {
+      --navy: #1a2e4a;
+      --teal: #2a7f7f;
+      --teal-light: #e8f4f4;
+      --text: #2c2c2c;
+      --muted: #6b6b6b;
+      --border: #dde3ea;
+      --bg: #f9fafb;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Georgia', serif; color: var(--text); background: var(--bg); line-height: 1.7; }
+    a { color: var(--teal); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy); padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    nav .brand { color: #fff; font-size: 1rem; font-weight: bold; padding: 1rem 0; letter-spacing: 0.03em; }
+    nav ul { list-style: none; display: flex; gap: 0.25rem; flex-wrap: wrap; }
+    nav ul li a {
+      color: rgba(255,255,255,0.85); font-family: 'Arial', sans-serif;
+      font-size: 0.8rem; padding: 0.5rem 0.75rem; border-radius: 4px;
+      transition: background 0.2s;
+    }
+    nav ul li a:hover { background: rgba(255,255,255,0.15); text-decoration: none; color: #fff; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, rgba(26,46,74,0.88) 0%, rgba(42,82,152,0.85) 100%),
+                  url('flower.jpg') center center / cover no-repeat;
+      color: #fff; padding: 5rem 2rem 4rem; text-align: center;
+    }
+    .hero h1 { font-size: 2.6rem; letter-spacing: 0.02em; margin-bottom: 0.5rem; }
+    .hero .subtitle { font-family: 'Arial', sans-serif; font-size: 1.05rem; opacity: 0.88; margin-bottom: 1.5rem; }
+    .hero .tags { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+    .hero .tag {
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px; padding: 0.3rem 0.9rem;
+      font-family: Arial, sans-serif; font-size: 0.8rem;
+    }
+    .hero .links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero .links a {
+      background: var(--teal); color: #fff; padding: 0.6rem 1.4rem;
+      border-radius: 5px; font-family: Arial, sans-serif; font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+    .hero .links a:hover { background: #1e6060; text-decoration: none; }
+    .hero .links a.outline {
+      background: transparent; border: 1.5px solid rgba(255,255,255,0.6);
+    }
+    .hero .links a.outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* LAYOUT */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 3.5rem 0; }
+    section + section { border-top: 1px solid var(--border); }
+    h2 {
+      font-size: 1.6rem; color: var(--navy); margin-bottom: 1.75rem;
+      padding-bottom: 0.5rem; border-bottom: 2px solid var(--teal);
+      display: inline-block;
+    }
+
+    /* ABOUT */
+    .about-content {
+      display: flex; gap: 2rem; align-items: flex-start;
+    }
+    .about-content img {
+      width: 160px; height: 160px; object-fit: cover;
+      border-radius: 50%; border: 3px solid var(--teal);
+      flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .about-content p { font-size: 1rem; color: var(--text); }
+    @media (max-width: 600px) {
+      .about-content { flex-direction: column; align-items: center; }
+    }
+
+    .info-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.25rem 1.5rem;
+    }
+    .info-card h3 { font-family: Arial, sans-serif; font-size: 0.9rem; color: var(--teal); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+    .info-card ul { list-style: none; }
+    .info-card ul li { font-family: Arial, sans-serif; font-size: 0.88rem; color: var(--text); padding: 0.2rem 0; }
+    .info-card ul li::before { content: "▸ "; color: var(--teal); }
+
+    /* EDUCATION */
+    .edu-item { margin-bottom: 1.75rem; }
+    .edu-item h3 { font-size: 1.05rem; color: var(--navy); }
+    .edu-item .degree { font-style: italic; color: var(--muted); font-size: 0.95rem; }
+    .edu-item .meta { font-family: Arial, sans-serif; font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
+    .edu-item .note { font-family: Arial, sans-serif; font-size: 0.85rem; margin-top: 0.3rem; color: var(--text); }
+
+    /* FUNDING */
+    .funding-item { margin-bottom: 1.25rem; padding-left: 1rem; border-left: 3px solid var(--teal); }
+    .funding-item h3 { font-size: 0.95rem; color: var(--navy); }
+    .funding-item .meta { font-family: Arial, sans-serif; font-size: 0.82rem; color: var(--muted); }
+
+    /* POSITIONS */
+    .position-item { margin-bottom: 1.5rem; }
+    .position-item .pos-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.25rem; }
+    .position-item h3 { font-size: 1rem; color: var(--navy); }
+    .position-item .dates { font-family: Arial, sans-serif; font-size: 0.82rem; color: var(--muted); white-space: nowrap; }
+    .position-item .org { font-style: italic; font-size: 0.9rem; color: var(--muted); }
+
+    /* PUBLICATIONS */
+    .pub-item {
+      background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+      padding: 1.1rem 1.3rem; margin-bottom: 1rem;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .pub-item:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.08); border-color: var(--teal); }
+    .pub-item .pub-title { font-size: 0.95rem; font-weight: bold; color: var(--navy); margin-bottom: 0.3rem; }
+    .pub-item .pub-authors { font-family: Arial, sans-serif; font-size: 0.82rem; color: var(--muted); margin-bottom: 0.3rem; }
+    .pub-item .pub-journal { font-family: Arial, sans-serif; font-size: 0.82rem; color: var(--text); }
+    .pub-item .pub-link {
+      display: inline-block; margin-top: 0.5rem;
+      font-family: Arial, sans-serif; font-size: 0.78rem;
+      background: var(--teal-light); color: var(--teal);
+      padding: 0.2rem 0.6rem; border-radius: 4px; border: 1px solid #b2d8d8;
+    }
+    .pub-item .pub-link:hover { background: var(--teal); color: #fff; text-decoration: none; }
+    .pub-year { font-family: Arial, sans-serif; font-size: 0.85rem; font-weight: bold; color: var(--teal); margin: 1.25rem 0 0.5rem; }
+
+    /* PRESENTATIONS */
+    .pres-item { margin-bottom: 1rem; padding-left: 1rem; border-left: 2px solid var(--border); font-size: 0.9rem; }
+    .pres-item .pres-title { font-weight: bold; color: var(--navy); }
+    .pres-item .pres-meta { font-family: Arial, sans-serif; font-size: 0.82rem; color: var(--muted); }
+
+    /* AWARDS */
+    .award-item { display: flex; gap: 1rem; margin-bottom: 0.85rem; align-items: flex-start; font-size: 0.9rem; }
+    .award-item .award-year { font-family: Arial, sans-serif; font-size: 0.8rem; color: var(--teal); min-width: 45px; font-weight: bold; }
+
+    /* FOOTER */
+    footer {
+      background: var(--navy); color: rgba(255,255,255,0.7);
+      text-align: center; padding: 2rem;
+      font-family: Arial, sans-serif; font-size: 0.82rem;
+    }
+    footer a { color: rgba(255,255,255,0.85); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="brand">Lina V. Dimitrov</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#funding">Funding</a></li>
+    <li><a href="#positions">Experience</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#presentations">Presentations</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Lina V. Dimitrov</h1>
+  <p class="subtitle">PhD Candidate in Epidemiology · Emory University, Rollins School of Public Health</p>
+  <div class="tags">
+    <span class="tag">Environmental Epidemiology</span>
+    <span class="tag">Alzheimer's Disease</span>
+    <span class="tag">Neighborhood Exposome</span>
+    <span class="tag">Neurodevelopment</span>
+  </div>
+  <div class="links">
+    <a href="https://drive.google.com/file/d/1Hg-OGLnMDJdJ0HI_yGrXdKUlGWJVQU7l/view?usp=sharing" target="_blank">View CV</a>
+    <a href="mailto:linavd@bu.edu" class="outline">Contact</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <h2>About</h2>
+    <div class="about-content">
+      <img src="headshot.jpg" alt="Lina V. Dimitrov" />
+      <p>Lina Dimitrov is a doctoral candidate in the Department of Epidemiology at Emory University. She received her BA in Neuroscience and Behavior from Barnard College, Columbia University in 2017 and her MPH in Epidemiology and Biostatistics from Boston University in 2020. Her previous work experience between degrees includes teaching English as a foreign language in France, life sciences consulting, and an ORISE Fellowship at the CDC in the National Center on Birth Defects and Developmental Disabilities, where she worked on projects related to children's mental health. Broadly, her interests are in understanding the etiology of neuropsychiatric outcomes, and she is particularly interested in exploring how the environment we live in, including environmental chemicals, the built environment, and psychosocial aspects of the environment, play into the development of these conditions. Currently, her work focuses on exploring how the historic neighborhood exposome relates to development of Alzheimer's disease and other dementias.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <h2>Education</h2>
+
+    <div class="edu-item">
+      <h3>Emory University, Rollins School of Public Health — Atlanta, GA</h3>
+      <div class="degree">Doctor of Philosophy in Epidemiology</div>
+      <div class="meta">2022–Present · GPA: 4.00/4.00</div>
+      <div class="note">ARCS Scholar · ADRC REC Trainee<br>
+      <em>Dissertation: "How does the environment we live in affect our risk for Alzheimer's disease? Understanding the neighborhood exposome"</em></div>
+    </div>
+
+    <div class="edu-item">
+      <h3>Boston University School of Public Health — Boston, MA</h3>
+      <div class="degree">Master of Public Health in Epidemiology &amp; Biostatistics</div>
+      <div class="meta">January 2020 · GPA: 3.99/4.00</div>
+      <div class="note">Activist Achievement Award Scholar · Inducted into Delta Omega Honorary Society</div>
+    </div>
+
+    <div class="edu-item">
+      <h3>Barnard College, Columbia University — New York, NY</h3>
+      <div class="degree">Bachelor of Arts in Neuroscience &amp; Behavior</div>
+      <div class="meta">May 2017 · GPA: 3.56/4.00</div>
+      <div class="note">Senior thesis awarded Pass with Distinction</div>
+    </div>
+
+    <div class="edu-item">
+      <h3>Teacher of English as a Foreign Language Certification — Toulouse, FR</h3>
+      <div class="meta">October 2017</div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNDING -->
+<section id="funding">
+  <div class="container">
+    <h2>NIH Funding</h2>
+
+    <div class="funding-item">
+      <h3>F31 NRSA Predoctoral Fellowship — National Institute on Aging</h3>
+      <div class="meta">January 2026 review · Impact score: 16; JIT submitted</div>
+    </div>
+
+    <div class="funding-item">
+      <h3>Goizueta Alzheimer's Disease Research Center Research Education Component Training Grant</h3>
+      <div class="meta">2 P30AG066511-06 · May 2025–Present</div>
+    </div>
+
+    <div class="funding-item">
+      <h3>Training in Environmental Health Science and Toxicology — NIH T32 Grant</h3>
+      <div class="meta">5T32ES012870-22 · August 2024–Present</div>
+    </div>
+  </div>
+</section>
+
+<!-- POSITIONS -->
+<section id="positions">
+  <div class="container">
+    <h2>Research &amp; Teaching Experience</h2>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Graduate Research Assistant — Dr. Anke Huels' Lab</h3>
+        <span class="dates">Jan 2023–Present</span>
+      </div>
+      <div class="org">Emory University, Rollins School of Public Health</div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Graduate Research Assistant — Dr. Todd Everson's Lab</h3>
+        <span class="dates">May 2023–Present</span>
+      </div>
+      <div class="org">Emory University, Rollins School of Public Health</div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>ORISE Epidemiology Fellow — Applied Research and Evaluation</h3>
+        <span class="dates">Feb 2021–Feb 2025</span>
+      </div>
+      <div class="org">Centers for Disease Control and Prevention (CDC), Atlanta, GA</div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Graduate Teaching Associate — Epidemiology of Aging</h3>
+        <span class="dates">Aug–Dec 2025</span>
+      </div>
+      <div class="org">Emory University, Rollins School of Public Health · Dr. Regina Shih</div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Graduate Teaching Associate — Advanced Epidemiologic Methods II</h3>
+        <span class="dates">Jan–May 2024</span>
+      </div>
+      <div class="org">Emory University, Rollins School of Public Health · Dr. Penelope Howards</div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Graduate Teaching Assistant — Epidemiologic Methods I</h3>
+        <span class="dates">Aug–Dec 2022</span>
+      </div>
+      <div class="org">Emory University, Rollins School of Public Health · Dr. Kristin Nelson</div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Graduate Research Assistant — Dr. Karlen Lyons-Ruth's Lab</h3>
+        <span class="dates">May 2019–Jan 2020</span>
+      </div>
+      <div class="org">Harvard Medical School / Cambridge Health Alliance</div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Associate Life Sciences Consultant</h3>
+        <span class="dates">Jun 2020–Jan 2021</span>
+      </div>
+      <div class="org">Trinity Life Sciences / BluePrint Research Group, New York, NY</div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Teacher of English as a Foreign Language</h3>
+        <span class="dates">Nov 2017–Jun 2018</span>
+      </div>
+      <div class="org">Le Challenge des Langues, Toulouse, FR</div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Research Assistant — Dr. Ellen Lumpkin's Lab</h3>
+        <span class="dates">Jun 2016–May 2017</span>
+      </div>
+      <div class="org">Columbia University Irving Medical Center</div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="container">
+    <h2>Publications</h2>
+
+    <div class="pub-year">2026</div>
+
+    <div class="pub-item">
+      <div class="pub-title">Interaction between neighborhood exposome and genetic risk in persistent distressing psychotic-like experiences in children</div>
+      <div class="pub-authors">Chen Y, Yuan Q, Dimitrov L, et al.</div>
+      <div class="pub-journal"><em>Nature Mental Health.</em> 2026;4:136–145.</div>
+      <a class="pub-link" href="https://doi.org/10.1038/s44220-025-00563-8" target="_blank">DOI: 10.1038/s44220-025-00563-8 ↗</a>
+    </div>
+
+    <div class="pub-year">2025</div>
+
+    <div class="pub-item">
+      <div class="pub-title">Association of social and environmental exposures at the neighborhood level with child brain volume</div>
+      <div class="pub-authors">Dimitrov LV, Christensen GM, Ku BS, Risk BB, Huels A.</div>
+      <div class="pub-journal"><em>Environment International.</em> 2025;201:109576.</div>
+      <a class="pub-link" href="https://doi.org/10.1016/j.envint.2025.109576" target="_blank">DOI: 10.1016/j.envint.2025.109576 ↗</a>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-title">Examining changes in behavioral, emotional, and tic symptoms in a pediatric sample in the first year of the pandemic</div>
+      <div class="pub-authors">Dimitrov LV, Lewin AB.</div>
+      <div class="pub-journal"><em>Child Psychiatry &amp; Human Development.</em> 2025.</div>
+      <a class="pub-link" href="https://doi.org/10.1007/s10578-025-01817-3" target="_blank">DOI: 10.1007/s10578-025-01817-3 ↗</a>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-title">Exposure profiles of social-environmental neighborhood factors and persistent distressing psychotic-like experiences across four years among young adolescents in the US</div>
+      <div class="pub-authors">Ku BS, Yuan QE, Christensen G, Dimitrov LV, Risk B, Huels A.</div>
+      <div class="pub-journal"><em>Psychological Medicine.</em> 2025;55:e53.</div>
+      <a class="pub-link" href="https://doi.org/10.1017/S0033291725000224" target="_blank">DOI: 10.1017/S0033291725000224 ↗</a>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-title">Cluster profiles of distressing psychotic-like experiences among children and associations with genetic risk, prenatal cannabis exposure, and social-environmental characteristics: exploratory analyses</div>
+      <div class="pub-authors">Yuan QE, Chen Y, Xu Y, Dimitrov LV, et al.</div>
+      <div class="pub-journal"><em>Schizophrenia Research.</em> 2025.</div>
+      <a class="pub-link" href="https://doi.org/10.1016/j.schres.2025.03.034" target="_blank">DOI: 10.1016/j.schres.2025.03.034 ↗</a>
+    </div>
+
+    <div class="pub-year">2024</div>
+
+    <div class="pub-item">
+      <div class="pub-title">Post-COVID condition risk factors and symptom clusters and associations with return to pre-COVID health: results from a 2021 multi-state survey</div>
+      <div class="pub-authors">Konkle SL, Magleby R, Bonacci RA, Segaloff HE, Dimitrov LV, et al.</div>
+      <div class="pub-journal"><em>Clinical Infectious Diseases.</em> 2024.</div>
+      <a class="pub-link" href="https://doi.org/10.1093/cid/ciae632" target="_blank">DOI: 10.1093/cid/ciae632 ↗</a>
+    </div>
+
+    <div class="pub-year">2023</div>
+
+    <div class="pub-item">
+      <div class="pub-title">A systematic review and meta-analysis of chemical exposures and attention-deficit/hyperactivity disorder in children</div>
+      <div class="pub-authors">Dimitrov LV, Kaminski JW, Holbrook JR, et al.</div>
+      <div class="pub-journal"><em>Prevention Science.</em> 2023.</div>
+      <a class="pub-link" href="https://doi.org/10.1007/s11121-023-01601-6" target="_blank">DOI: 10.1007/s11121-023-01601-6 ↗</a>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-title">Short sleep duration: children's mental, behavioral, and developmental disorders and demographic, neighborhood, and family context in a nationally representative sample, 2016–2019</div>
+      <div class="pub-authors">Claussen AH, Dimitrov LV, Bhupalam S, Wheaton AG, Danielson ML.</div>
+      <div class="pub-journal"><em>Preventing Chronic Disease.</em> 2023;20:220408.</div>
+      <a class="pub-link" href="https://doi.org/10.5888/pcd20.220408" target="_blank">DOI: 10.5888/pcd20.220408 ↗</a>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-title">Post-COVID conditions and healthcare utilization among adults with and without disabilities: 2021 Porter Novelli FallStyles survey</div>
+      <div class="pub-authors">Miller MJ, Feldstein LR, Holbrook J, Plumb ID, Accorsi EK, Zhang QC, Cheng Q, Ko JY, Wanga V, Konkle S, Dimitrov LV, et al.</div>
+      <div class="pub-journal"><em>Disability and Health Journal.</em> 2023;16(2):101436.</div>
+      <a class="pub-link" href="https://doi.org/10.1016/j.dhjo.2022.101436" target="_blank">DOI: 10.1016/j.dhjo.2022.101436 ↗</a>
+    </div>
+
+    <div class="pub-year">2021</div>
+
+    <div class="pub-item">
+      <div class="pub-title">Long-term symptoms among adults tested for SARS-CoV-2 — United States, January 2020–April 2021</div>
+      <div class="pub-authors">Wanga V, Chevinsky JR, Dimitrov LV, et al.</div>
+      <div class="pub-journal"><em>MMWR Morbidity and Mortality Weekly Report.</em> 2021;70(36):1235–1241.</div>
+      <a class="pub-link" href="https://doi.org/10.15585/mmwr.mm7036a1" target="_blank">DOI: 10.15585/mmwr.mm7036a1 ↗</a>
+    </div>
+
+    <div class="pub-item">
+      <div class="pub-title">Patterns of maternal childhood maltreatment and disrupted interaction between mothers and their 4-month-old infants</div>
+      <div class="pub-authors">Khoury JE, Dimitrov L, Enlow MB, Haltigan JD, Bronfman E, Lyons-Ruth K.</div>
+      <div class="pub-journal"><em>Child Maltreatment.</em> 2021.</div>
+      <a class="pub-link" href="https://doi.org/10.1177/10775595211007567" target="_blank">DOI: 10.1177/10775595211007567 ↗</a>
+    </div>
+
+    <div class="pub-year">2019</div>
+
+    <div class="pub-item">
+      <div class="pub-title">Camphor white oil induces tumor regression through cytotoxic T cell–dependent mechanisms</div>
+      <div class="pub-authors">Moayedi Y, Greenberg SA, Jenkins BA, Marshall KL, Dimitrov LV, et al.</div>
+      <div class="pub-journal"><em>Molecular Carcinogenesis.</em> 2019;58(5):722–734.</div>
+      <a class="pub-link" href="https://doi.org/10.1002/mc.22965" target="_blank">DOI: 10.1002/mc.22965 ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRESENTATIONS -->
+<section id="presentations">
+  <div class="container">
+    <h2>Selected Presentations</h2>
+
+    <div class="pres-item">
+      <div class="pres-title">The Combined Association of Air Pollution, Noise Pollution, and Neighborhood Socio-economic Disadvantage with Memory Performance in a Cognitively Healthy Mid-life Population</div>
+      <div class="pres-meta">Dimitrov LV, Liang D, Li H, et al. · ISEE North America Chapter Annual Meeting, Baltimore, MD · June 2026 · <strong>Oral Presentation</strong></div>
+    </div>
+
+    <div class="pres-item">
+      <div class="pres-title">The Joint Association of Air Pollution and Neighborhood-level Social Factors with Memory Performance in a Cognitively Healthy Mid-life Population</div>
+      <div class="pres-meta">Dimitrov LV, Liang D, Jin Z, et al. · International Conference on Alzheimer's and Parkinson's Diseases, Copenhagen, Denmark · March 2026 · Poster</div>
+    </div>
+
+    <div class="pres-item">
+      <div class="pres-title">The Association Between Air Pollution and Neighborhood-level Social Factors and Memory Performance in a Cognitively Healthy Mid-life Population</div>
+      <div class="pres-meta">Dimitrov LV, Liang D, Jin Z, et al. · ISEE Annual Meeting, Atlanta, GA · August 2025 · Poster</div>
+    </div>
+
+    <div class="pres-item">
+      <div class="pres-title">Long-term exposure to air pollution and repeated measures of cognitive function among cognitively normal adults — impact of physical activity</div>
+      <div class="pres-meta">Huels A, Dimitrov LV, Yan S, et al. · Alzheimer's Association International Conference, Toronto, ON · July 2025 · Poster (presented on behalf of Dr. Huels)</div>
+    </div>
+
+    <div class="pres-item">
+      <div class="pres-title">Association of social and environmental exposures at the neighborhood level with child brain volume and persistent distressing psychotic-like experiences</div>
+      <div class="pres-meta">Dimitrov LV, Christensen GM, Ku B, et al. · ISEE North America Chapter Abstract Contest Winner Presentation, Virtual · December 2024 · <strong>Oral Presentation</strong></div>
+    </div>
+
+    <div class="pres-item">
+      <div class="pres-title">Association of social and environmental exposures at the neighborhood level with child brain volume and persistent distressing psychotic-like experiences</div>
+      <div class="pres-meta">Dimitrov LV, Christensen GM, Ku B, et al. · ISEE Annual Meeting, Santiago, Chile · August 2024 · <strong>Traditional Oral Presentation</strong></div>
+    </div>
+
+    <div class="pres-item">
+      <div class="pres-title">Impact of Social and Environmental Exposures at the Neighborhood-Level on Child Brain Volume</div>
+      <div class="pres-meta">Dimitrov LV, Christensen GM, Ku B, et al. · USA Exposome Symposium, Nashville, TN · January 2024 · Poster</div>
+    </div>
+
+    <div class="pres-item">
+      <div class="pres-title">Impact of the COVID-19 Pandemic on Mental Health in a Pediatric Sample</div>
+      <div class="pres-meta">Dimitrov LV, Bolton C, Danielson ML, et al. · AACAP Annual Meeting, New York, NY · October 2023 · Poster</div>
+    </div>
+
+    <div class="pres-item">
+      <div class="pres-title">A systematic review and meta-analysis of chemical exposures and attention-deficit/hyperactivity disorder</div>
+      <div class="pres-meta">Dimitrov LV, Kaminski J, Holbrook J, et al. · Society for Epidemiologic Research &amp; SPER Annual Meetings, Chicago, IL · June 2022 · Poster</div>
+    </div>
+
+    <div class="pres-item">
+      <div class="pres-title">Co-occurrence of ADHD, Disruptive Behavior Disorders, Anxiety, and Depression in School-Aged Youth</div>
+      <div class="pres-meta">Dimitrov L, Lipton C, Danielson M, et al. · AACAP Annual Meeting, Virtual · October 2021 · Poster</div>
+    </div>
+
+    <div class="pres-item">
+      <div class="pres-title">Maternal Childhood Maltreatment Predicts Pervasive Disruptions on Mother-Infant Interactions at Four Months</div>
+      <div class="pres-meta">Dimitrov LV, Khoury JE, Bosquet-Enlow M, Lyons-Ruth K. · International Congress of Infant Studies, Virtual · June 2020 · Poster</div>
+    </div>
+
+    <div class="pres-item">
+      <div class="pres-title">Camphor oil may lead to over-expression of thymic stromal lymphopoietin</div>
+      <div class="pres-meta">Dimitrov L, Moayedi Y, Greenberg S, Lumpkin EA. · Barnard College Summer Research Institute, New York, NY · July 2016 · Poster</div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="container">
+    <h2>Selected Awards &amp; Recognition</h2>
+
+    <div class="award-item"><span class="award-year">2026</span><span>ISEE Travel Award — 2026 North America Chapter Regional Conference, Baltimore</span></div>
+    <div class="award-item"><span class="award-year">2025</span><span>Goizueta ADRC Research Education Component (REC) Trainee — NIA-funded training program + grant award</span></div>
+    <div class="award-item"><span class="award-year">2025</span><span>Outstanding Teamwork Award Nomination — CDC Fellows Collective Award</span></div>
+    <div class="award-item"><span class="award-year">2024</span><span>ISEE North America Chapter Student and New Researchers Network Abstract Contest Winner</span></div>
+    <div class="award-item"><span class="award-year">2024</span><span>Excellence in Behavioral and Social Science Research (runner-up) — CDC Award</span></div>
+    <div class="award-item"><span class="award-year">2024</span><span>Achievement Rewards for College Scientists (ARCS) Foundation Scholar Award</span></div>
+    <div class="award-item"><span class="award-year">2024</span><span>ISEE Travel Award — 2024 Annual Meeting, Santiago, Chile</span></div>
+    <div class="award-item"><span class="award-year">2021</span><span>SER Scholarship to attend the Society for Epidemiologic Research 2021 Annual Meeting</span></div>
+    <div class="award-item"><span class="award-year">2020</span><span>Inducted into Delta Omega Honorary Society in Public Health (Alpha Beta Chapter, BUSPH)</span></div>
+    <div class="award-item"><span class="award-year">2020</span><span>Nominated for Dr. Theodore Colton Prize for Excellence in Epidemiology (BUSPH)</span></div>
+    <div class="award-item"><span class="award-year">2018</span><span>Activist Achievement Award — merit scholarship upon admission to BUSPH</span></div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership">
+  <div class="container">
+    <h2>Leadership &amp; Service</h2>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Student Advisor — Laney Graduate School Steering Committee</h3>
+        <span class="dates">Aug 2025–Present</span>
+      </div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>PhD Student Representative — Epidemiology Dept., Emory RSPH</h3>
+        <span class="dates">Aug 2024–Present</span>
+      </div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Ambassador — Emory Jones Program in Ethics</h3>
+        <span class="dates">Aug 2025</span>
+      </div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Student Advisor — Career and Practicum Office, BUSPH</h3>
+        <span class="dates">Aug–Dec 2019</span>
+      </div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Artistic Director — Columbia University Ballet Ensemble</h3>
+        <span class="dates">Dec 2014–Dec 2015</span>
+      </div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Professional Memberships &amp; Peer Review</h3>
+        <span class="dates"></span>
+      </div>
+      <div class="org">International Society of Environmental Epidemiology (member, ad hoc abstract reviewer) · Ad hoc reviewer: <em>The Gerontologist</em>, <em>Lancet Regional Health</em></div>
+    </div>
+
+    <div class="position-item">
+      <div class="pos-header">
+        <h3>Mentoring</h3>
+        <span class="dates"></span>
+      </div>
+      <div class="org">Zander Vervaet, MSPH (2024–Present) · Keita Shimizu, MPH (2024–2025)</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <h2>Languages &amp; Technical Skills</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;">
+      <div class="info-card">
+        <h3>Languages</h3>
+        <ul>
+          <li>English (Native)</li>
+          <li>Russian (Native)</li>
+          <li>Spanish (Proficient)</li>
+          <li>Bulgarian (Heritage Speaker)</li>
+          <li>French (Advanced Beginner)</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h3>Technical Skills</h3>
+        <ul>
+          <li>R</li>
+          <li>SAS &amp; SAS-callable SUDAAN</li>
+          <li>REDCap</li>
+          <li>LaTeX</li>
+          <li>Microsoft Office Suite</li>
+          <li>Data Visualization</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Lina V. Dimitrov · PhD Candidate, Epidemiology · Emory University RSPH</p>
+  <p style="margin-top:0.5rem;"><a href="mailto:linavd@bu.edu">linavd@bu.edu</a> · <a href="https://drive.google.com/file/d/1Hg-OGLnMDJdJ0HI_yGrXdKUlGWJVQU7l/view?usp=sharing" target="_blank">Download CV</a></p>
+</footer>
+
+</body>
+</html>
